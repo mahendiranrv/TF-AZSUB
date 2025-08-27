@@ -13,11 +13,17 @@ provider "azurerm" {
 
 ## Calling SP details from Azure Key vault ##
 
+data "azurerm_key_vault" "key_vault" {
+    name = "KV-SP-TF"
+    resource_group_name = "RG-tf-keyvault"
+  
+}
+
 ## Calling Client ID of SP ##
 
 data "azurerm_key_vault_secret" "clientid" {
   name         = "client-id"
-  key_vault_id = data.azurerm_key_vault.KV-SP-TF.id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 output "clientid_value" {
@@ -29,10 +35,10 @@ output "clientid_value" {
 
 data "azurerm_key_vault_secret" "clientsecret" {
   name         = "client-secret"
-  key_vault_id = data.azurerm_key_vault.KV-SP-TF.id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
-output "clientid_value" {
+output "clientsecret_value" {
   value     = data.azurerm_key_vault_secret.clientsecret.value
   sensitive = true
 }
@@ -41,10 +47,10 @@ output "clientid_value" {
 
 data "azurerm_key_vault_secret" "subscriptionid" {
   name         = "subscription-id"
-  key_vault_id = data.azurerm_key_vault.KV-SP-TF.id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
-output "clientid_value" {
+output "subscriptionid_value" {
   value     = data.azurerm_key_vault_secret.subscriptionid.value
   sensitive = true
 }
@@ -53,7 +59,7 @@ output "clientid_value" {
 
 data "azurerm_key_vault_secret" "tenantid" {
   name         = "tenant-id"
-  key_vault_id = data.azurerm_key_vault.KV-SP-TF.id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 output "tenantid_value" {

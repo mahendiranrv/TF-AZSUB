@@ -9,6 +9,11 @@ terraform {
 
 provider "azurerm" {
   features {}
+  client_id = data.azurerm_key_vault_secret.clientid.value
+  client_secret = data.azurerm_key_vault_secret.clientsecret.value
+  subscription_id = data.azurerm_key_vault_secret.subscriptionid.value
+  tenant_id = data.azurerm_key_vault_secret.tenantid.value
+
 }
 
 ## Calling SP details from Azure Key vault ##

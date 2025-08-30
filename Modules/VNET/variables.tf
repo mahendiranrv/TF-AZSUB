@@ -22,9 +22,9 @@ variable "vnet" {
 variable "subnets" {
     type = map(object({
         name = string
-        address_prefixes = string
+        address_prefix = string
     }))
-    description = " vnet information "
+    description = " subnet information "
   
 }
 

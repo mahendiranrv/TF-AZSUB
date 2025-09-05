@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg-vnet" {
 
 resource "azurerm_virtual_network" "vnet" {
   for_each = var.vnet
-  name                = each.value.name
+  name                = each.key.name
   location            = var.location
   resource_group_name = var.rg
   address_space       = [each.value.address_space]

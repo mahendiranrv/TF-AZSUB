@@ -10,25 +10,34 @@ variable "location" {
   
 }
 
+#variable "vnet" {
+#   type = map(object({
+#        name = string
+#        address_space = string
+#   }))
+#    description = " vnet information "
+  
+#}
+
+#variable "subnets" {
+#    type = map(object({
+#       name = string
+#       address_prefix = string
+#   }))
+#   description = " subnet information "
+  
+#}
+
 variable "vnet" {
-    type = map(object({
-        name = string
-        address_space = string
-    }))
-    description = " vnet information "
+    type = map(string)
+    description = "value"
   
 }
 
 variable "subnets" {
-    type = map(object({
-        name = string
-        address_prefix = string
-    }))
-    description = " subnet information "
-  
+    type = map(string)
+      
 }
-
-
 
 
 

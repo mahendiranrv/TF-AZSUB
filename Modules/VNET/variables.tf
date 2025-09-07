@@ -7,37 +7,21 @@ variable "rg" {
 variable "location" {
     type = string
     description = "Location "
-  
+
 }
-
-#variable "vnet" {
-#   type = map(object({
-#        name = string
-#        address_space = string
-#   }))
-#    description = " vnet information "
   
-#}
-
-#variable "subnets" {
-#    type = map(object({
-#       name = string
-#       address_prefix = string
-#   }))
-#   description = " subnet information "
-  
-#}
-
 variable "vnet" {
-    type = map(string)
-    description = "value"
-  
+    type = list(object({
+      name = string
+      address_space = string
+    }))
+    
 }
 
 variable "subnets" {
-    type = map(string)
-      
+    type = list(object({
+      name = string
+      address_prefix = string 
+    }))
+  
 }
-
-
-

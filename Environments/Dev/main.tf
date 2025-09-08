@@ -1,8 +1,8 @@
 module "vnet" {
     source = "../../Modules/VNET"
-    rg = var.rg
+    resource_group_name = var.resource_group_name
     location = var.location
-    vnet = var.vnet
+    vnets = var.vnets
     subnets = var.subnets
 
 }

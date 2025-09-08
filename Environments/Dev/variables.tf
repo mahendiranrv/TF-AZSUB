@@ -1,29 +1,22 @@
-variable "rg" {
+variable "resource_group_name" {
     type = string
-    description = "RG for Virtual Network"
+    description = "RG dev Virtual Network"
   
 }
 
 variable "location" {
     type = string
     description = "Location "
-  
-}
 
-variable "vnet" {
-    type = map(object({
-        name = string
-        address_space = string
-    }))
-    description = " vnet information "
+}
   
+variable "vnets" {
+    type = map(string)
+          
 }
 
 variable "subnets" {
-    type = map(object({
-        name = string
-        address_prefixes = string
-    }))
-    description = " vnet information "
+  type = map(string)
   
 }
+

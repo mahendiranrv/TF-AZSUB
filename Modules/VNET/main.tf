@@ -1,25 +1,24 @@
 resource "azurerm_resource_group" "rg" {
-  name     = var.rg
+  name     = var.resource_group_name
   location = var.location
 }
 
 
 resource "azurerm_virtual_network" "vnets" {
-  name                = var.vnet[count.index].name
+  for_each = var.vnets
+  name                = each.key
   location            = var.location
-  resource_group_name = var.rg
-  address_space       = [var.vnet[count.index].address_space]
+  resource_group_name = var.resource_group_name
+  address_space       = [each.key]
   
-
-  subnet {
-    name             = var.subnets[count.index].name
-    address_prefixes = [var.subnets[count.index].address_prefix]
-  }
-
-  subnet {
-    name             = var.subnets[count.index].name
-    address_prefixes = [var.subnets[count.index].address_prefix]
     
   }
+
+resource "azurerm_subnet" "example" {
+  for_each = var.subnets
+  name                 = each.key
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnets.id
+  address_prefixes     = [each.key]
 
 }
